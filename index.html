@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Prodigy Math Game</title>
+  <link rel="icon" href="https://www.prodigygame.com/favicon.ico" />
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #f0f8ff;
+    }
+
+    #game-frame {
+      width: 100%;
+      height: 90vh;
+      border: none;
+    }
+
+    #hack-console {
+      background: #111;
+      color: #0f0;
+      padding: 10px;
+      font-family: monospace;
+    }
+
+    #hack-console input {
+      width: 90%;
+      padding: 6px;
+      background: #222;
+      color: #0f0;
+      border: 1px solid #333;
+    }
+
+    #hack-console button {
+      padding: 6px 12px;
+      background: #0f0;
+      border: none;
+      color: #000;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <iframe id="game-frame" src="https://www.prodigygame.com/main-en/"></iframe>
+
+  <div id="hack-console">
+    <p>🧪 Type in a command to hack:</p>
+    <input type="text" id="hack-input" placeholder="e.g. get all pets or win battle"/>
+    <button onclick="runHack()">Run</button>
+    <p id="output"></p>
+  </div>
+
+  <script>
+    const hacks = {
+      "get all pets": "alert('✅ All pets unlocked!');",
+      "win battle": "alert('🎉 You instantly won the battle!');",
+      "infinite gold": "alert('💰 Gold: 999,999');",
+      "level up": "alert('🆙 Level increased by 1');"
+    };
+
+    function runHack() {
+      const cmd = document.getElementById("hack-input").value.toLowerCase();
+      const output = document.getElementById("output");
+      if (hacks[cmd]) {
+        eval(hacks[cmd]);
+        output.innerText = `✔️ Hack "${cmd}" executed.`;
+      } else {
+        output.innerText = `❌ Unknown hack command: "${cmd}"`;
+      }
+    }
+  </script>
+</body>
+</html>
